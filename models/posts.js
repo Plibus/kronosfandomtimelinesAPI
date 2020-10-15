@@ -24,19 +24,19 @@ module.exports = class Posts {
   }
 
   static fetchAll() {
-    return db.execute('SELECT * FROM posts');
+    return db.execute('SELECT * FROM posts ORDER BY updated');
   }
 
   static fetchAllOfFandom(fandomId) {
-    return db.execute('SELECT * FROM posts WHERE fandomId = ? AND type != "fandom"', [fandomId]);
+    return db.execute('SELECT * FROM posts WHERE fandomId = ? AND type != "fandom" ORDER BY updated', [fandomId]);
   }
 
   static fetchAllOf(type) {
-    return db.execute('SELECT * FROM posts WHERE type = ?', [type]);
+    return db.execute('SELECT * FROM posts WHERE type = ? ORDER BY updated', [type]);
   }
 
   static fetchAllOfFromFandomOfType(id, type) {
-    return db.execute('SELECT * FROM posts WHERE fandomId = ? AND catagory = ?', [id, type]);
+    return db.execute('SELECT * FROM posts WHERE fandomId = ? AND catagory = ? ORDER BY updated', [id, type]);
   }
 
   static post(fandomId, type, catagory, theme, name, description, creator, updator, data) {
