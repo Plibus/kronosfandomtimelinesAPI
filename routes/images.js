@@ -26,7 +26,7 @@ router.get('/fandom/:id', imageController.getFandomImages);
 
 router.post('/', upload.single('media'), async (req, res, next) => { 
     try {
-        const postResponse = await Images.post(req.body.fandomId, 'http://localhost:3000/' + req.file.path, req.body.mediaCaption, req.body.mediaAlt, req.body.mediaCredit, req.body.uploader);
+        const postResponse = await Images.post(req.body.fandomId, req.file.path, req.body.mediaCaption, req.body.mediaAlt, req.body.mediaCredit, req.body.uploader);
         res.status(200).json(postResponse);
     } catch(e) {
         if(!e.statusCode) {
