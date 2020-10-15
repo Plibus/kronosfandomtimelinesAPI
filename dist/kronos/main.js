@@ -1277,11 +1277,17 @@ class PostCreateComponent extends _create_component__WEBPACK_IMPORTED_MODULE_1__
     onSubmit(value) {
         if (this.isNew()) {
             console.log("NEW: " + value);
-            this.http.post(value).subscribe(response => this.router.navigate(['/post', response.fandomId, response.id, response.type, response.catagory, 0]), error => console.log('error', error));
+            this.http.post(value).subscribe(response => {
+                console.log('/post fandomId ' + response.fandomId + ' id ' + response.id + ' type ' + response.type + ' catagory ' + response.catagory);
+                window.location.href = 'http://165.232.62.56:3000/';
+            }, error => console.log('error', error));
         }
         else {
             console.log("UPDATE: " + value);
-            this.http.put(value, this.id).subscribe(response => this.router.navigate(['/post', response.fandomId, response.id, response.type, response.catagory, 0]), error => console.log('error', error));
+            this.http.put(value, this.id).subscribe(response => {
+                console.log('/post fandomId ' + response.fandomId + ' id ' + response.id + ' type ' + response.type + ' catagory ' + response.catagory);
+                window.location.href = 'http://165.232.62.56:3000/';
+            }, error => console.log('error', error));
         }
     }
 }
