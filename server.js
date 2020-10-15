@@ -1,4 +1,5 @@
 const express = require('express');
+const http = require('http')
 const path = require('path');
 const multer = require('multer');
 const bodyParser = require('body-parser');
@@ -8,6 +9,7 @@ const imageRoutes = require('./routes/images');
 const errorsController = require('./controllers/errors');
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(express.static(path.join(__dirname, '/dist/kronos')));
 
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'))
