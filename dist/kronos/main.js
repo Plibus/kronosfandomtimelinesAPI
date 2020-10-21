@@ -558,7 +558,7 @@ __webpack_require__.r(__webpack_exports__);
 class PostService {
     constructor(http) {
         this.http = http;
-        this.url = "http://165.232.62.56:3000/posts/";
+        this.url = "http://kronosfandomtimelines.com/posts/";
     }
     fetch(id) {
         return this.http.get(this.url + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((_) => console.log('fetch post')));
@@ -2267,7 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
 class ImageService {
     constructor(http) {
         this.http = http;
-        this.url = "http://165.232.62.56:3000/images/";
+        this.url = "http://kronosfandomtimelines.com/images/";
     }
     fetch(id) {
         return this.http.get(this.url + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])((_) => console.log('fetch post')));
@@ -2993,8 +2993,9 @@ function FandomsGalleryComponent_li_15_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const image_r1 = ctx.$implicit;
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", image_r1.media, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", image_r1.mediaAlt);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r0.getImage(image_r1.media), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", image_r1.mediaAlt);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](image_r1.mediaCaption);
 } }
