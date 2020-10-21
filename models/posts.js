@@ -43,7 +43,8 @@ module.exports = class Posts {
     return db.execute('INSERT INTO posts (fandomId, type, catagory, theme, name, description, creator, updator, data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [fandomId, type, catagory, theme, name, description, creator, updator, data]);
   }
   
-  static update(id, theme, name, description, updator, data) {
+  static update(fandomId, id, theme, name, description, updator, data) {
+    db.execute('UPDATEupdator = ?, updated = NOW() WHERE id = fandomId', [updator, fandomId]);
     return db.execute('UPDATE posts SET theme = ?, name = ?, description = ?, updator = ?, updated = NOW(), data = ? WHERE id = ? ', [theme, name, description, updator, data, id]);
   }
 
