@@ -44,7 +44,6 @@ module.exports = class Posts {
   }
   
   static update(fandomId, id, theme, name, description, updator, data) {
-    db.execute('UPDATEupdator = ?, updated = NOW() WHERE id = fandomId', [updator, fandomId]);
     return db.execute('UPDATE posts SET theme = ?, name = ?, description = ?, updator = ?, updated = NOW(), data = ? WHERE id = ? ', [theme, name, description, updator, data, id]);
   }
 
