@@ -1308,7 +1308,7 @@ function PostCreateComponent_div_23_ng_template_6_Template(rf, ctx) { if (rf & 1
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("styles", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](6, _c0));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", "imagePreview" + i_r4)("src", section_r3.controls.media.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.controls.mediaAlt.value);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", "imagePreview" + i_r4)("src", ctx_r11.getImage(section_r3.controls.media.value), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.controls.mediaAlt.value);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r3.controls.mediaCaption.value);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -1361,7 +1361,7 @@ function PostCreateComponent_div_23_ng_template_8_Template(rf, ctx) { if (rf & 1
     const section_r3 = ctx_r37.$implicit;
     const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", "imagePreview" + i_r4)("src", section_r3.controls.media.value, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.controls.mediaAlt.value);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", "imagePreview" + i_r4)("src", ctx_r13.getImage(section_r3.controls.media.value), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.controls.mediaAlt.value);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r3.controls.mediaCaption.value);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -1400,7 +1400,7 @@ class PostCreateComponent extends _create_component__WEBPACK_IMPORTED_MODULE_1__
         this.http = http;
         this.imageService = imageService;
         this.router = router;
-        this.domain = 'http://165.232.62.56:3000/';
+        this.domain = 'http://kronosfandomtimelines.com/';
         this.finished = 'Create';
     }
     ngOnInit() {
@@ -1462,19 +1462,22 @@ class PostCreateComponent extends _create_component__WEBPACK_IMPORTED_MODULE_1__
     onSubmit(value) {
         if (this.isNew()) {
             console.log("NEW: " + value);
-            this.http.post(value).subscribe(response => {
-                console.log(response);
-                //console.log('/post fandomId ' + response.fandomId.toString() + ' id ' + response.id +' type '+ response.type +' catagory '+ response.catagory)     
-                //window.location.href = 'http://165.232.62.56:3000/post/'+response.fandomId+'/'+response.id+'/'+response.type+'/'+response.catagory+'/0';
-            }, error => console.log('error', error));
+            this.http.post(value).subscribe((res) => console.log(res), (err) => console.log(err));
+            if (this.type != 'fandom') {
+                this.router.navigate(['/post', this.fandomId, this.fandomId, 'fandom', 'fandom', 0]);
+            }
+            else {
+                this.router.navigate(['/fandoms']);
+            }
         }
         else {
             console.log("UPDATE: " + value);
-            this.http.put(value, this.id).subscribe(response => {
-                console.log(response);
-                //window.location.href = 'http://165.232.62.56:3000/post/'+response.fandomId+'/'+response.id+'/'+response.type+'/'+response.catagory+'/0';
-            }, error => console.log('error', error));
+            this.http.put(value, this.id).subscribe((res) => console.log(res), (err) => console.log(err));
+            this.router.navigate(['/post', this.fandomId, this.id, this.type, this.catagory, 0]);
         }
+    }
+    getImage(imageStr) {
+        return 'http://kronosfandomtimelines.com/' + imageStr;
     }
 }
 PostCreateComponent.ɵfac = function PostCreateComponent_Factory(t) { return new (t || PostCreateComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_post_service__WEBPACK_IMPORTED_MODULE_4__["PostService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_image_service__WEBPACK_IMPORTED_MODULE_5__["ImageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"])); };
@@ -1802,12 +1805,13 @@ function DefaultComponent_div_7_ng_template_7_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const section_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+    const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r1.sectionTitle);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("innerHTML", section_r1.text, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", section_r1.media, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r1.mediaAlt);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r9.getImage(section_r1.media), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r1.mediaAlt);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r1.mediaCaption);
 } }
@@ -1836,10 +1840,11 @@ function DefaultComponent_div_7_ng_template_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const section_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+    const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r1.sectionTitle);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", section_r1.media, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r1.mediaAlt);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r11.getImage(section_r1.media), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r1.mediaAlt);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r1.mediaCaption);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -1889,6 +1894,9 @@ class DefaultComponent {
         this.postService.fetch(this.id).subscribe(data => {
             this.post = data[0][0];
         });
+    }
+    getImage(imageStr) {
+        return 'http://kronosfandomtimelines.com/' + imageStr;
     }
 }
 DefaultComponent.ɵfac = function DefaultComponent_Factory(t) { return new (t || DefaultComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_post_service__WEBPACK_IMPORTED_MODULE_1__["PostService"])); };
@@ -2416,7 +2424,7 @@ function FandomComponent_div_14_ng_template_7_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("innerHTML", section_r3.text, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeHtml"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r11.domain + section_r3.media, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.mediaAlt);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r11.getImage(section_r3.media), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.mediaAlt);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r3.mediaCaption);
 } }
@@ -2449,7 +2457,7 @@ function FandomComponent_div_14_ng_template_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r3.sectionTitle);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r13.domain + section_r3.media, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.mediaAlt);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r13.getImage(section_r3.media), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"])("alt", section_r3.mediaAlt);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](section_r3.mediaCaption);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -2496,7 +2504,6 @@ class FandomComponent {
         this.postService = postService;
         this.post = {};
         this.catagory = 'fandom';
-        this.domain = 'http://165.232.62.56:3000/';
         // 
         this.catagories = [new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Articles', 'article', 'post'), new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Characters', 'character', 'post'), new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Events', 'event', 'post'), new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Geography', 'geography', 'post'), new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Maps', 'map', 'map'), new _models_Catagory__WEBPACK_IMPORTED_MODULE_1__["Catagory"]('Timelines', 'timeline', 'timeline')];
     }
@@ -2511,6 +2518,9 @@ class FandomComponent {
     }
     getImageURL(cat) {
         return '../../assets/catagory/' + cat + '.jpg';
+    }
+    getImage(imageStr) {
+        return 'http://kronosfandomtimelines.com/' + imageStr;
     }
 }
 FandomComponent.ɵfac = function FandomComponent_Factory(t) { return new (t || FandomComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_post_service__WEBPACK_IMPORTED_MODULE_2__["PostService"])); };
@@ -3045,6 +3055,9 @@ class FandomsGalleryComponent {
             };
             reader.readAsDataURL(fileInput.target.files[0]);
         }
+    }
+    getImage(imageStr) {
+        return 'http://kronosfandomtimelines.com/' + imageStr;
     }
     onSubmit() {
         const formData = new FormData();

@@ -69,7 +69,7 @@ exports.postPost = async(req, res, next) => {
     JSONObj = req.body;
     try {
         const postResponse = await Posts.post(req.body.fandomId, req.body.type, req.body.catagory, req.body.theme, req.body.name, req.body.description, req.body.creator, req.body.updator, JSONObj);
-        res.status(200).json(postResponse);
+        res.json(postResponse);
     } catch(e) {
         if(!e.statusCode) {
             e.statusCode = 500;
@@ -84,7 +84,7 @@ exports.putPost = async(req, res, next) => {
     JSONObj = req.body;
     try {
         const postResponse = await Posts.update(req.params.id, req.body.theme, req.body.name, req.body.description, req.body.updator, JSONObj);
-        res.status(200).json(postResponse);
+        res.json(postResponse);
     } catch(e) {
         if(!e.statusCode) {
             e.statusCode = 500;
