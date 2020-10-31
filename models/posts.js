@@ -24,7 +24,7 @@ module.exports = class Posts {
   }
 
   static fetchAll() {
-    return db.execute('SELECT * FROM posts ORDER BY updated ASC');
+    return db.execute('SELECT * FROM posts ORDER BY updated DESC');
   }
 
   static fetchAllOfFandom(fandomId) {
